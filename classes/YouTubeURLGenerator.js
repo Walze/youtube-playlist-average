@@ -1,6 +1,4 @@
-const
-    { API_KEY } = require('./key.json'),
-    { PLAYLIST_ID } = require('./key.json')
+const { API_KEY, PLAYLIST_ID } = require('./../key.json')
 
 class YTURL {
     constructor(api_key, playlist_id) {

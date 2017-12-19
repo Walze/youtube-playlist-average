@@ -1,7 +1,7 @@
 const
 	axios = require('axios'),
-	duration2secs = require('./helpers/durationToSecs'),
-	seconds2String = require('./helpers/seconds2String'),
+	duration2secs = require('./../helpers/durationToSecs'),
+	seconds2String = require('./../helpers/seconds2String'),
 	playlist = require('./YouTubeURLGenerator')
 
 class DataFetcher {

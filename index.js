@@ -1,7 +1,7 @@
 const
   seconds2String = require('./helpers/seconds2String'),
-  playlist = require('./YouTubeURLGenerator'),
-  DataFetcher = require('./DataFetcher'),
+  playlist = require('./classes/YouTubeURLGenerator'),
+  DataFetcher = require('./classes/DataFetcher'),
   fetcher = new DataFetcher()
 
 fetcher.get(playlist.url, () => {
