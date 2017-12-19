@@ -5,14 +5,14 @@ const
   api_key = 'AIzaSyC9oEwzxO5OF5kKYmwryWyCVLIyU10tBBY',
   playlistID = 'UUdGpd0gNn38UKwoncZd9rmA',
 
-  YTURL = require('./youtubeUrlGenerator'),
-  playlist = new YTURL(api_key, playlistID),
-
   axios = require('axios'),
+
   chunk = require('./chunckArray'),
   duration2secs = require('./durationToSecs'),
-  seconds2String = require('./seconds2String')
+  seconds2String = require('./seconds2String'),
 
+  YTURL = require('./youtubeUrlGenerator'),
+  playlist = new YTURL(api_key, playlistID)
 
 
 let IDs = []
