@@ -1,17 +1,20 @@
 const
 	axios = require('axios'),
 	duration2secs = require('./helpers/durationToSecs'),
-	playlist = require('./YTUrlGen')
+	seconds2String = require('./helpers/seconds2String'),
+	playlist = require('./YouTubeURLGenerator')
 
 class DataFetcher {
 
 	constructor() {
 		this.totalVideos = 0
 		this.totalDuration = 0
-		this.counter = 1;
+		this.counter = 1
+		this.startTime = false
 	}
 
 	get(url, endGet) {
+		if (!this.startTime) this.startTime = new Date()
 		console.log('Loading...')
 
 		axios.get(url)
@@ -27,10 +30,26 @@ class DataFetcher {
 							this.counter++
 						})
 						if (res.data.hasOwnProperty('nextPageToken')) this.get(playlist.getNext(res.data.nextPageToken), endGet)
-						else endGet()
+						else {
+							endGet()
+							this.timer(new Date())
+						}
 					}).catch(err => console.log(err))
 
 			}).catch(err => console.error(err))
+	}
+
+	timer(end) {
+		var date1 = this.startTime
+		var date2 = end
+		if (date2 < date1) {
+			date2.setDate(date2.getDate() + 1)
+		}
+
+		var diff = date2 - date1
+
+		console.log(`Done in ${seconds2String(diff / 1000)}`)
+		console.log('\n')
 	}
 
 }

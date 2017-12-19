@@ -1,6 +1,6 @@
 const
   seconds2String = require('./helpers/seconds2String'),
-  playlist = require('./YTUrlGen'),
+  playlist = require('./YouTubeURLGenerator'),
   DataFetcher = require('./DataFetcher'),
   fetcher = new DataFetcher()
 
@@ -11,4 +11,5 @@ fetcher.get(playlist.url, () => {
   console.log(`Number of Videos => ${fetcher.totalVideos}`)
   console.log('\n')
   console.log(`Average => ${seconds2String(fetcher.totalDuration / fetcher.totalVideos)}`)
+  console.log('\n')
 });
