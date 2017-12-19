@@ -1,9 +1,11 @@
-module.exports = class YTURL {
+const
+    { API_KEY } = require('./key.json'),
+    { PLAYLIST_ID } = require('./key.json')
 
+class YTURL {
     constructor(api_key, playlist_id) {
         // Used to get all videos Ids
         this._url = `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId=${playlist_id}&key=${api_key}`
-
         // Used to get Duration of vids
         this._videoUrl = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=REPLACE&key=${api_key}`
     }
@@ -20,3 +22,7 @@ module.exports = class YTURL {
         return this._videoUrl.replace('REPLACE', id)
     }
 }
+
+const playlist = new YTURL(API_KEY, PLAYLIST_ID)
+
+module.exports = playlist

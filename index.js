@@ -2,54 +2,18 @@
 // const hardCoded = require('./testIDs.hardcoded.temp')
 
 const
-  { API_KEY } = require('./key.json'),
-  playlistID = 'UUdGpd0gNn38UKwoncZd9rmA',
-
-  axios = require('axios'),
-
-  chunk = require('./helpers/chunckArray'),
-  duration2secs = require('./helpers/durationToSecs'),
   seconds2String = require('./helpers/seconds2String'),
+  playlist = require('./YTUrlGen'),
+  DataFetcher = require('./DataFetcher'),
+  fetcher = new DataFetcher()
 
-  YTURL = require('./YTUrlGen'),
-  playlist = new YTURL(API_KEY, playlistID)
-
-
-let totalVideos = 0
-
-let totalDuration = 0
-
-let counter = 1;
-
-function get(url, endGet) {
-  console.log('Loading...')
-
-  axios.get(url)
-    .then(res => {
-
-      const chunk = res.data.items.map(i => i.contentDetails.videoId)
-      totalVideos += chunk.length
-
-      axios.get(playlist.getVideo(chunk.join(',')))
-        .then(res2 => {
-          res2.data.items.map(video => {
-            totalDuration += Number(duration2secs(video.contentDetails.duration))
-            counter++
-          })
-          if (res.data.hasOwnProperty('nextPageToken')) get(playlist.getNext(res.data.nextPageToken), endGet)
-          else endGet()
-        }).catch(err => console.log(err))
-
-    }).catch(err => console.error(err))
-}
-
-get(playlist.url, () => {
+fetcher.get(playlist.url, () => {
   console.log('\n')
-  console.log(`Total Duration => ${seconds2String(totalDuration)}`)
+  console.log(`Total Duration => ${seconds2String(fetcher.totalDuration)}`)
   console.log('\n')
-  console.log(`Number of Videos => ${totalVideos}`)
+  console.log(`Number of Videos => ${fetcher.totalVideos}`)
   console.log('\n')
-  console.log(`Average => ${seconds2String(totalDuration / (totalVideos))}`)
+  console.log(`Average => ${seconds2String(fetcher.totalDuration / fetcher.totalVideos)}`)
 });
 
 /*
