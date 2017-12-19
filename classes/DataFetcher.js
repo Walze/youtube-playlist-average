@@ -33,7 +33,6 @@ class DataFetcher {
 						if (res.data.hasOwnProperty('nextPageToken')) this.get(playlist.getNext(res.data.nextPageToken), endGet)
 						else {
 							endGet()
-							this.timer(new Date())
 						}
 					}).catch(err => console.log(err))
 
