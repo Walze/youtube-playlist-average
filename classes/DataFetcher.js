@@ -11,11 +11,12 @@ class DataFetcher {
 		this.totalDuration = 0
 		this.counter = 1
 		this.startTime = false
+		this.loadingString = 'Loading'
 	}
 
 	get(url, endGet) {
 		if (!this.startTime) this.startTime = new Date()
-		console.log('Loading...')
+		console.log(this.loadingString += '.')
 
 		axios.get(url)
 			.then(res => {
