@@ -1,5 +1,3 @@
-// AIzaSyC9oEwzxO5OF5kKYmwryWyCVLIyU10tBBY
-
 module.exports = class YTURL {
 
     constructor(api_key, playlist_id) {
