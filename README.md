@@ -8,11 +8,16 @@ Can also be used in all videos of a channel. You just need to go to "See All" in
 
 # Usage
 
-Change the playlistID in the playlistID const to the one you want to test then run the commands:
+Change the playlistID in the key.json to the one you want to test.
 
-```javascript
-playlistID = 'PLAYLIST_ID'
+```json
+{
+    "API_KEY": "YOUR_API_KEY",
+    "PLAYLIST_ID": "YOUR_PLAYLIST_ID"
+}
 ```
+
+Then, run the commands:
 
 ```cmd
 npm i
@@ -35,11 +40,16 @@ Também pode ser usado em todos os vídeos de um canal. Você só precisa ir par
 
 # Uso
 
-Altere o ID da lista de reprodução no const do playlistID para o que deseja testar, em seguida, execute os comandos:
+Altere o ID da lista de reprodução no key.json para o que deseja testar.
 
-```javascript
-playlistID = 'PLAYLIST_ID'
+```json
+{
+    "API_KEY": "YOUR_API_KEY",
+    "PLAYLIST_ID": "YOUR_PLAYLIST_ID"
+}
 ```
+
+Em seguida, execute os comandos:
 
 ```cmd
 npm i
