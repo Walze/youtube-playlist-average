@@ -2,7 +2,7 @@
 // const hardCoded = require('./testIDs.hardcoded.temp')
 
 const
-  api_key = 'YOUR_API_KEY',
+  { API_KEY } = require('./key.json'),
   playlistID = 'UUdGpd0gNn38UKwoncZd9rmA',
 
   axios = require('axios'),
@@ -12,25 +12,47 @@ const
   seconds2String = require('./helpers/seconds2String'),
 
   YTURL = require('./YTUrlGen'),
-  playlist = new YTURL(api_key, playlistID)
+  playlist = new YTURL(API_KEY, playlistID)
 
 
-let IDs = []
+let totalVideos = 0
+
+let totalDuration = 0
+
+let counter = 1;
 
 function get(url, endGet) {
   console.log('Loading...')
 
   axios.get(url)
     .then(res => {
-      res.data.items.map(i => IDs.push(i.contentDetails.videoId))
-      if (res.data.hasOwnProperty('nextPageToken'))
-        get(playlist.getNext(res.data.nextPageToken), endGet)
-      else endGet()
-    })
-    .catch(err => console.error(err))
+
+      const chunk = res.data.items.map(i => i.contentDetails.videoId)
+      totalVideos += chunk.length
+
+      axios.get(playlist.getVideo(chunk.join(',')))
+        .then(res2 => {
+          res2.data.items.map(video => {
+            totalDuration += Number(duration2secs(video.contentDetails.duration))
+            counter++
+          })
+          if (res.data.hasOwnProperty('nextPageToken')) get(playlist.getNext(res.data.nextPageToken), endGet)
+          else endGet()
+        }).catch(err => console.log(err))
+
+    }).catch(err => console.error(err))
 }
 
+get(playlist.url, () => {
+  console.log('\n')
+  console.log(`Total Duration => ${seconds2String(totalDuration)}`)
+  console.log('\n')
+  console.log(`Number of Videos => ${totalVideos}`)
+  console.log('\n')
+  console.log(`Average => ${seconds2String(totalDuration / (totalVideos))}`)
+});
 
+/*
 get(playlist.url, () => {
   const chunks = chunk(IDs, 50)
 
@@ -59,11 +81,11 @@ get(playlist.url, () => {
   })().then(() => {
 
     console.log('\n')
-    console.log(`Total Duration: ${seconds2String(totalDuration)}`)
+    console.log(`Total Duration => ${seconds2String(totalDuration)}`)
     console.log('\n')
-    console.log(`Number of Videos: ${IDs.length}`)
+    console.log(`Number of Videos => ${IDs.length}`)
     console.log('\n')
-    console.log(`Average is ${seconds2String(totalDuration / IDs.length)}`)
+    console.log(`Average => ${seconds2String(totalDuration / IDs.length)}`)
 
   })
 })
