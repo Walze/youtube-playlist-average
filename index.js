@@ -2,7 +2,7 @@
 // const hardCoded = require('./testIDs.hardcoded.temp')
 
 const
-  api_key = 'AIzaSyC9oEwzxO5OF5kKYmwryWyCVLIyU10tBBY',
+  api_key = 'YOUR_API_KEY',
   playlistID = 'UUdGpd0gNn38UKwoncZd9rmA',
 
   axios = require('axios'),
