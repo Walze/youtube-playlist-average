@@ -1,10 +1,10 @@
 {
-  "name": "youtube2mins",
+  "name": "youtube-playlist-average",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an algorithm that gives you, Total Duration, Number of Videos and Average of all videos in a YouTube playlist. Can also be used in all videos of a channel. You just need to go to "See All" in the videos tab on the channel and get the ID from the URL.",
   "main": "index.js",
   "scripts": {},
-  "author": "Wallace",
+  "author": "Wallace Fares",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1"
