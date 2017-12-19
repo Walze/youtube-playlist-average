@@ -1,5 +1,5 @@
 // for testing purposes
-// const hardCoded = require('./18-12-2017.hardcoded')
+// const hardCoded = require('./testIDs.hardcoded.temp')
 
 const
   api_key = 'AIzaSyC9oEwzxO5OF5kKYmwryWyCVLIyU10tBBY',
@@ -7,11 +7,11 @@ const
 
   axios = require('axios'),
 
-  chunk = require('./chunckArray'),
-  duration2secs = require('./durationToSecs'),
-  seconds2String = require('./seconds2String'),
+  chunk = require('./helpers/chunckArray'),
+  duration2secs = require('./helpers/durationToSecs'),
+  seconds2String = require('./helpers/seconds2String'),
 
-  YTURL = require('./youtubeUrlGenerator'),
+  YTURL = require('./YTUrlGen'),
   playlist = new YTURL(api_key, playlistID)
 
 
