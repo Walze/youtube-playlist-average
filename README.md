@@ -10,7 +10,9 @@ Can also be used in all videos of a channel. You just need to go to "See All" in
 
 Change the playlistID in the playlistID const to the one you want to test then run the commands:
 
-```cmd
+```javascript
+playlistID = 'PLAYLIST_ID',
+
 npm i
 
 node index
@@ -33,7 +35,9 @@ Também pode ser usado em todos os vídeos de um canal. Você só precisa ir par
 
 Altere o ID da lista de reprodução no const do playlistID para o que deseja testar, em seguida, execute os comandos:
 
-```cmd
+```javascript
+playlistID = 'PLAYLIST_ID',
+
 npm i
 
 node index
