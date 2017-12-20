@@ -8,7 +8,7 @@ Can also be used in all videos of a channel. You just need to go to "See All" in
 
 # Usage
 
-Change the playlistID in the key.json to the one you want to test.
+Create a key.json file and Change the playlistID to the one you want to test.
 
 ```json
 {
@@ -40,7 +40,7 @@ Também pode ser usado em todos os vídeos de um canal. Você só precisa ir par
 
 # Uso
 
-Altere o ID da lista de reprodução no key.json para o que deseja testar.
+Crie um arquivo key.json e mude o PLAYLIST_ID para o que deseja testar.
 
 ```json
 {
