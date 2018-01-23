@@ -7,6 +7,7 @@
   "author": "Wallace Fares",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "jsonfile": "^4.0.0"
   }
 }

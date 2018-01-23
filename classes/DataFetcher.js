@@ -11,11 +11,12 @@ class DataFetcher {
 		this.totalDuration = 0
 		this.startTime = false
 		this.loadingString = 'Loading'
+		this.videos = []
 	}
 
 	get(url, endGet) {
 		if (!this.startTime) this.startTime = new Date()
-		console.log(this.loadingString += '.')
+		console.log(this.loadingString + ` ${this.totalVideos} fetched`)
 
 		axios.get(url)
 			.then(res => {
@@ -24,12 +25,15 @@ class DataFetcher {
 
 				axios.get(playlist.getVideo(chunk.join(',')))
 					.then(res2 => {
-						res2.data.items
-							.map(video => this.totalDuration += Number(duration2secs(video.contentDetails.duration)))
+						res2.data.items.map(video => {
+							this.totalDuration += Number(duration2secs(video.contentDetails.duration))
+							this.videos.push(video)
+						})
+
 						if (res.data.hasOwnProperty('nextPageToken'))
 							this.get(playlist.getNext(res.data.nextPageToken), endGet)
 						else
-							endGet()
+							endGet(this.videos)
 					}).catch(err => console.log(err))
 			}).catch(err => console.error(err))
 	}
