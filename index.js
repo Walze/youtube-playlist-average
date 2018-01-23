@@ -2,11 +2,33 @@ const
   seconds2String = require('./helpers/seconds2String'),
   playlist = require('./classes/YouTubeURLGenerator'),
   DataFetcher = require('./classes/DataFetcher'),
+  JsonController = require('./classes/JsonController'),
+  fileHandler = new JsonController(playlist),
   fetcher = new DataFetcher(),
-  JSF = require('jsonfile'),
-  file = `./saved playlists/${playlist.playlist_id}.json`
+  file = `./saved playlists/${playlist.playlist_id}.json`,
+  readline = require('readline'),
+  rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
 
 
+const id_exists = fileHandler.checkCache(file)
+
+if (id_exists) {
+  rl.question('Playlist is already cached, would you like to show it? (Y/N)', (answer) => {
+
+    if (answer.toLowerCase() == 'y') {
+      // run yes
+    } else {
+      //run no
+    }
+
+    rl.close()
+  })
+}
+
+/*
 fetcher.get(playlist.url, videos => {
   console.log(`\n Total Duration => ${seconds2String(fetcher.totalDuration)} \n`)
   console.log(`Number of Videos => ${fetcher.totalVideos} \n`)
@@ -14,21 +36,11 @@ fetcher.get(playlist.url, videos => {
 
   fetcher.timer(new Date)
 
-  JSF.readFile(file, (err, array) => {
-    obj = { id: playlist.playlist_id, videos }
-    index = array.findIndex(needle => needle.id == playlist.playlist_id)
+  fileHandler.save(videos)
 
-    if (index >= 0) {
-      array[index].push(obj)
-      JSF.writeFile(file, array, err => console.error(err))
-    } else {
-      array.push(obj)
-      JSF.writeFile(file, array, err => console.error(err))
-    }
-  })
-
-  console.log('Press any key to exit...')
+  console.log('\n Press any key to exit...')
   process.stdin.setRawMode(true)
   process.stdin.resume()
   process.stdin.on('data', process.exit.bind(process, 0))
 })
+*/
