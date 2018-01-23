@@ -12,7 +12,7 @@ const
     output: process.stdout
   })
 
-
+/*
 const id_exists = fileHandler.checkCache(file)
 
 if (id_exists) {
@@ -27,8 +27,8 @@ if (id_exists) {
     rl.close()
   })
 }
+*/
 
-/*
 fetcher.get(playlist.url, videos => {
   console.log(`\n Total Duration => ${seconds2String(fetcher.totalDuration)} \n`)
   console.log(`Number of Videos => ${fetcher.totalVideos} \n`)
@@ -43,4 +43,3 @@ fetcher.get(playlist.url, videos => {
   process.stdin.resume()
   process.stdin.on('data', process.exit.bind(process, 0))
 })
-*/
